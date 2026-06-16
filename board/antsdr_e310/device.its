@@ -1,0 +1,56 @@
+/dts-v1/;
+
+/ {
+    description = "Image";
+    #address-cells = <1>;
+
+    images {
+        fdt {
+            description = "Device Tree";
+            data = /incbin/("${DTB}");
+            type = "flat_dt";
+            arch = "arm";
+        };
+
+        kernel {
+            description = "Linux kernel";
+            data = /incbin/("${KERNEL}");
+            type = "kernel";
+            arch = "arm";
+            os = "linux";
+            compression = "none";
+            load = <0x3000000>;
+            entry = <0x3000000>;
+
+            hash {
+                algo = "sha256";
+            };
+        };
+
+        ramdisk {
+            description = "Ramdisk";
+            data = /incbin/("${RAMDISK}");
+            type = "ramdisk";
+            arch = "arm";
+            os = "linux";
+            compression = "none";
+
+            load = <0x04000000>;
+            entry = <0x04000000>;
+
+            hash {
+                algo = "sha256";
+            };
+        };
+    };
+
+    configurations {
+        default = "config";
+
+        config {
+            fdt = "fdt";
+            kernel = "kernel";
+            ramdisk = "ramdisk";
+        };
+    };
+};
