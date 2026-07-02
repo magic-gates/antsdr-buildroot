@@ -7,12 +7,12 @@ DTB="${BINARIES_DIR}/device.dtb"
 KERNEL="${BINARIES_DIR}/zImage"
 RAMDISK="${BINARIES_DIR}/rootfs.cpio.gz"
 
-DEVICE_ITS="${BOARD_DIR}/device.its"
+IMAGE_ITS="${BOARD_DIR}/image.its"
 
 sed \
   -e "s|\${DTB}|$DTB|g" \
   -e "s|\${KERNEL}|$KERNEL|g" \
   -e "s|\${RAMDISK}|$RAMDISK|g" \
-  "${DEVICE_ITS}" > "${BINARIES_DIR}/device.its"
+  "${IMAGE_ITS}" > "${BINARIES_DIR}/image.its"
 
-mkimage -f "${BINARIES_DIR}/device.its" "${BINARIES_DIR}/image.itb"
+mkimage -f "${BINARIES_DIR}/image.its" "${BINARIES_DIR}/image.itb"

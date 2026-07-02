@@ -1,0 +1,5 @@
+config BR2_PACKAGE_MAGIC_DRIVER
+	bool "magic-driver"
+	depends on BR2_LINUX_KERNEL
+	help
+	  Linux kernel module for magic tricks.
